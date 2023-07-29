@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+   
+
+<body>
+    <header>
+        <div><h2>Great Quotes</h2></div>
+        <ul>
+            <li class="show-quotes">All Quotes</li>
+            <li class="add-quote">New Quotes</li>
+        </ul>
+    </header>
+    <main>
+        <h1>AllQuotes</h1>
+        <div class="Quote-content">
+        </div>
+        <div class="add-quote-form hide">
+            <div style="background-color: #549F52;padding:1rem;height:300px;margin:1rem;border-radius:0.4rem"> 
+                <form style="display:flex;flex-direction:column;padding:1rem;width:300px">
+                    <label for="author">Author:</label>
+                    <input type="text" name="author" style="width:100%;padding:0.1rem;margin-top:0.3rem;margin-bottom:1rem" id="author" required/>
+                    <label for="quote">Quote:</label>
+                    <input type="text" name="quote" id="quote" class="quoting" placeholder="Author's Quote" style="font-family: 'Courier New', Courier, monospace;height:100px" required>
+                    <input type="submit" value="Add Quote" style="color:white;padding:0.6rem;margin-top:1rem;background-color:green;border-radius:6px;width:100px">
+                </form>
+            </div>
+        </div>
+    </main>
+    <script src="./api.js"></script>
+    <script>
+            const Queue=document.querySelector(".Quote-content");
+            const quoteForm=document.querySelector(".add-quote-form");
+            const openForm=document.querySelector(".add-quote");
+            openForm.addEventListener("click",()=>{quoteForm.classList.toggle("hide")})
+            const form=document.querySelector("form");
+            form.addEventListener('submit',(e)=>{e.preventDefault(e);
+            const name=document.querySelector("#author");
+            const quote=document.querySelector("#quote");
+            sending(name.value,quote.value);
+            quoteForm.classList.add("hide");
+            name.value="";quote.value="";
+            });
+            const showQuotes=document.querySelector('.show-quotes');
+            showQuotes.addEventListener('click',()=>{
+                quoteForm.classList.add("hide");
+            })
+            fillData();
+           
+
+    </script>
+    
+</body>
+</html>
